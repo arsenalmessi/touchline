@@ -20,7 +20,7 @@ import {
 // import { Label } from "../ui/label";
 import { Button } from "../ui/button";
 import { Plus } from "lucide-react";
-import { StepFormProps } from "./BioDataForm";
+import { StepFormProps } from "./StepFormProps";
 
 export default function Availability({
   page,

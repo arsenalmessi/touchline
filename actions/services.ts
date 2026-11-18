@@ -73,71 +73,17 @@ export async function updateService(id: string, data: ServiceProps) {
     };
   }
 }
-export async function createManyServices() {
-  try {
-    const services = [
-      {
-        title: "Telehealth",
-        slug: "telehealth",
-        imageUrl:
-          "https://utfs.io/f/c56e827b-d6b0-47de-911f-69cc7618ebbf-v7obs8.png",
-      },
-      {
-        title: "Video prescription refill",
-        slug: "video-prescription-refill",
-        imageUrl:
-          "https://utfs.io/f/49ac2ff7-5c8b-490b-91ef-2995b379e5fa-mw2o8v.png",
-      },
-      {
-        title: "In-person doctor visit",
-        slug: "in-person-doctor-visit",
-        imageUrl:
-          "https://utfs.io/f/5a3df907-a734-45eb-b329-00e682aa084f-fkv1ob.png",
-      },
-      {
-        title: "UTI consult",
-        slug: "uti-consult",
-        imageUrl:
-          "https://utfs.io/f/56dfedde-e9f0-49bf-8d20-bfc3721ac7bd-1tsgvn.png",
-      },
-      {
-        title: "ED consult",
-        slug: "ed-consult",
-        imageUrl:
-          "https://utfs.io/f/abdefad5-4550-4547-9aa6-db6722a294cb-5g8vya.png",
-      },
-      {
-        title: "Mental health consult",
-        slug: "mental-health-consult",
-        imageUrl:
-          "https://utfs.io/f/55f0f1d3-148f-4880-8823-ec64d44d6d37-jpgalc.png",
-      },
-    ];
-    for (const service of services) {
-      try {
-        await createService(service);
-      } catch (error) {
-        console.error(`Error creating service "${service.title}":`, error);
-      }
-    }
-  } catch (error) {
-    console.log(error);
-    return {
-      data: null,
-      status: 500,
-      error,
-    };
-  }
-}
-export interface ServiceWithDoctorProfileCount {
+
+export interface ServiceWithWorkerCount {
   id: string;
   title: string;
   slug: string;
-  imageUrl: string;
+  image?: string | null;
   _count: {
-    workerProfiles: number;
+    workers: number;
   };
 }
+
 export async function getServices() {
   try {
     const services = await prismaClient.service.findMany({
@@ -148,30 +94,34 @@ export async function getServices() {
         id: true,
         title: true,
         slug: true,
-        imageUrl: true,
+        image: true,
+        isActive: true,
         _count: {
           select: {
-            workerProfiles: true,
+            workers: true,
           },
         },
         createdAt: true,
         updatedAt: true,
       },
     });
+
     return {
       data: services,
       status: 200,
       error: null,
     };
   } catch (error) {
-    console.log(error);
+    console.error("Error fetching services:", error);
+
     return {
       data: null,
       status: 500,
-      error,
+      error: "Failed to fetch services.",
     };
   }
 }
+
 export async function getServiceBySlug(slug: string) {
   try {
     if (slug) {

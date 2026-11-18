@@ -13,12 +13,14 @@ import type { Service, WorkerProfile } from "@prisma/client";
 
 interface OnboardingStepsProps {
   id: string;
-  WorkerProfile: WorkerProfile & {
+
+  WorkerProfile: (WorkerProfile & {
     services?: {
       serviceId: string;
       description?: string | null;
     }[];
-  };
+  }) | null;
+
   services: Service[];
 }
 

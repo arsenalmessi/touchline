@@ -1,5 +1,4 @@
 
-import Link from "next/link";
 import { prismaClient } from "@/lib/db";
 import WorkerCard from "@/components/WorkerCard";
 import { Worker } from "@/types/types";
@@ -14,73 +13,75 @@ export default async function Featured() {
       status: "APPROVED",
     },
     include: {
-      user: true,
+      availability: true,
+      services: {
+        where: {
+          isActive: true,
+        },
+        include: {
+          service: true,
+        },
+      },
+      user: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          phone: true,
+          image: true,
+          slug: true,
+        },
+      },
     },
     orderBy: {
       createdAt: "desc",
     },
   });
 
-
   const workers: Worker[] = profiles.map((profile) => ({
     id: profile.user.id,
     userId: profile.userId,
-  
     name: profile.user.name,
     firstName: profile.firstName,
     lastName: profile.lastName,
-  
     email: profile.user.email,
     phone: profile.user.phone,
-  
     slug: profile.slug,
     image: profile.user.image,
-  
     workerProfile: profile,
   }));
 
   return (
     <main className="min-h-screen bg-[#0d0b08]">
-
-      <section className="px-8 pt-16 text-center relative overflow-hidden">
-        <div className="flex items-center justify-center gap-4 mb-6">
-          <div className="w-16 h-px bg-[#2a2318]" />
-
-          <span className="font-sans text-[10px] tracking-[0.25em] text-[#7a5f32] uppercase">
+      <section className="relative overflow-hidden px-8 pt-16 text-center">
+        <div className="mb-6 flex items-center justify-center gap-4">
+          <div className="h-px w-16 bg-[#2a2318]" />
+          <span className="font-sans text-[10px] uppercase tracking-[0.25em] text-[#7a5f32]">
             The Artisans
           </span>
-
-          <div className="w-16 h-px bg-[#2a2318]" />
+          <div className="h-px w-16 bg-[#2a2318]" />
         </div>
 
-        <h1 className="font-serif text-xl md:text-3xl font-light text-[#f0ebe0] leading-none mb-4">
+        <h1 className="mb-4 font-serif text-xl font-light leading-none text-[#f0ebe0] md:text-3xl">
           Meet the Hands
           <br />
-          <em className="italic text-[#b8924a] font-light">
+          <em className="font-light italic text-[#b8924a]">
             Behind the Magic
           </em>
         </h1>
-
-    
       </section>
 
-
-
-      <section className="px-6 md:px-8 pb-24">
-        <div className="max-w-7xl mx-auto">
-
+      <section className="px-6 pb-24 md:px-8">
+        <div className="mx-auto max-w-7xl">
           {workers.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {workers.map((worker) => (
-                <WorkerCard
-                  key={worker.id}
-                  worker={worker}
-                />
+                <WorkerCard key={worker.id} worker={worker} />
               ))}
             </div>
           ) : (
-            <div className="text-center py-24 border border-[#2a2318]">
-              <h3 className="font-serif text-2xl text-[#b8924a] mb-3">
+            <div className="border border-[#2a2318] py-24 text-center">
+              <h3 className="mb-3 font-serif text-2xl text-[#b8924a]">
                 Something Beautiful Is Coming
               </h3>
               <p className="text-sm text-[#6b5e50]">
@@ -88,13 +89,8 @@ export default async function Featured() {
               </p>
             </div>
           )}
-
         </div>
-
       </section>
-
-   
-
     </main>
   );
 }

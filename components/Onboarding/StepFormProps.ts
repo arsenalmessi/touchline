@@ -9,12 +9,12 @@ export type StepFormProps = {
   nextPage: string;
   formId?: string;
 
-  WorkerProfile?: WorkerProfile & {
+  WorkerProfile?: (WorkerProfile & {
     services?: {
       serviceId: string;
       description?: string | null;
     }[];
-  };
+  }) | null;
 
   services?: Service[];
 };
