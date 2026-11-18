@@ -5,6 +5,15 @@ const nextConfig: NextConfig = {
   experimental: {
     agentFeedback: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "ik.imagekit.io",
+        pathname: "/ceixpfpny/**",
+      },
+    ],
+  },
   cacheComponents: true,
   partialPrefetching: true,
   turbopack: {
