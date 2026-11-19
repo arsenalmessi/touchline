@@ -63,10 +63,10 @@ export default async function Featured() {
         </div>
 
         <h1 className="mb-4 font-serif text-xl font-light leading-none text-[#f0ebe0] md:text-3xl">
-          Meet the Hands
+          Featured
           <br />
           <em className="font-light italic text-[#b8924a]">
-            Behind the Magic
+            Professionals
           </em>
         </h1>
       </section>

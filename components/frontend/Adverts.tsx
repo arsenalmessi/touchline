@@ -3,18 +3,21 @@ import { Sparkles, ShieldCheck, Star } from "lucide-react";
 const adverts = [
   {
     icon: Sparkles,
-    title: "Mobile Therapists",
-    description: "Expert massage therapists who come to you — at home, hotel, or office.",
+    title: "Personal Experiences",
+    description:
+      "Discover independent companions and lifestyle professionals offering personalised experiences in your preferred setting.",
   },
   {
     icon: ShieldCheck,
-    title: "Fully Vetted",
-    description: "Every therapist is certified, insured, and background-checked for your peace of mind.",
+    title: "Privacy & Discretion",
+    description:
+      "Explore profiles with confidence, supported by clear standards, privacy-conscious interactions and verified information.",
   },
   {
     icon: Star,
-    title: "Luxury Experience",
-    description: "From deep tissue to hot stone — tailored treatments for every body and mood.",
+    title: "Exceptional Company",
+    description:
+      "Discover distinctive personalities and curated experiences designed around your preferences and expectations.",
   },
 ];
 

@@ -432,7 +432,7 @@ const Navbar = ({ session }: NavbarProps) => {
         <nav className={`shiftly-navbar${scrolled ? ' scrolled' : ''}`}>
 
           <Link href="/" className="shiftly-brand">
-            Sera<span>fine</span>
+            Touch<span>line</span>
           </Link>
 
           {/* Desktop navigation */}
@@ -441,9 +441,9 @@ const Navbar = ({ session }: NavbarProps) => {
             <Link href="/about" className="shiftly-nav-link">About</Link>
             <Link href="/search" className="shiftly-nav-link">Search</Link>
             <Link href="/terms-and-conditions" className="shiftly-nav-link">Terms And Conditions</Link>
-            <Link href="/register"  className="shiftly-mobile-link">
+            {/* <Link href="/register"  className="shiftly-mobile-link">
               Join 
-            </Link>
+            </Link> */}
             <Link href="/contact" className="shiftly-nav-link">Contact</Link>
           </div>
 
@@ -564,7 +564,7 @@ const Navbar = ({ session }: NavbarProps) => {
             </Link>
             <Link href="/search" className="shiftly-nav-link">Search</Link>
             <Link href="/terms-and-conditions" className="shiftly-nav-link">Terms And Conditions</Link>
-            <Link href="/register" className="shiftly-nav-link">Join </Link>
+            {/* <Link href="/register" className="shiftly-nav-link">Join </Link> */}
 
             <Link href="/register" onClick={closeMobileMenu} className="shiftly-mobile-link">
               Join as Professional
