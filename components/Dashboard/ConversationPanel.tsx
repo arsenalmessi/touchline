@@ -12,7 +12,6 @@ interface InboxMessage {
   senderId: string;
   recipientId: string;
   senderName: string;
-  senderEmail: string;
   subject: string;
   body: string;
   createdAt: Date;
@@ -84,7 +83,6 @@ export default function ConversationPanel({
         recipientId: otherUserId,
         senderId: currentUserId,
         senderName: "",
-        senderEmail: "",
         subject: messages[0]?.subject || "Conversation",
         body: trimmedMessage,
       });

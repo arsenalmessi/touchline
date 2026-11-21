@@ -47,8 +47,7 @@ export default function DoctorPanel({
                 <p className="text-sm font-medium leading-none">
                   {doctor.name}
                 </p>
-                <p className="text-sm text-muted-foreground">{doctor.email}</p>
-              </div>
+                </div>
               <div className="ml-auto font-medium">
                 <ApproveBtn
                   status={status}

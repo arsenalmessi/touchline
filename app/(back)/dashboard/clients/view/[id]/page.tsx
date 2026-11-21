@@ -174,12 +174,7 @@ export default async function ClientDetailsPage({
                     {clientName}
                   </h1>
 
-                  {client.user?.email && (
-                    <p className="mt-1 flex items-center gap-2 text-sm text-[#a7a095]">
-                      <Mail size={15} />
-                      {client.user.email}
-                    </p>
-                  )}
+             
                 </div>
               </div>
 
@@ -241,11 +236,7 @@ export default async function ClientDetailsPage({
                       icon={User}
                     />
 
-                    <InfoItem
-                      label="Email address"
-                      value={client.user?.email}
-                      icon={Mail}
-                    />
+                 
 
                     <InfoItem
                       label="Phone number"

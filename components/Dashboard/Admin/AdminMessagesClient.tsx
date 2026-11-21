@@ -21,13 +21,11 @@ type Message = {
   sender: {
     id: string;
     name: string | null;
-    email: string | null;
     role: string;
   };
   recipient: {
     id: string;
     name: string | null;
-    email: string | null;
     role: string;
   };
 };
@@ -136,9 +134,7 @@ export default function AdminMessagesClient({ messages }: Props) {
 
     return (
       conversation.client.name?.toLowerCase().includes(query) ||
-      conversation.worker.name?.toLowerCase().includes(query) ||
-      conversation.client.email?.toLowerCase().includes(query) ||
-      conversation.worker.email?.toLowerCase().includes(query)
+      conversation.worker.name?.toLowerCase().includes(query) 
     );
   });
 
@@ -298,10 +294,7 @@ export default function AdminMessagesClient({ messages }: Props) {
                   {selectedConversation.worker.name || "Unknown worker"}
                 </h2>
 
-                <p className="mt-1 text-xs text-[#918b80]">
-                  {selectedConversation.client.email || "No client email"} ·{" "}
-                  {selectedConversation.worker.email || "No worker email"}
-                </p>
+              
               </div>
 
               <div className="hidden items-center gap-2 rounded-full border border-[#b8924a]/20 bg-[#b8924a]/10 px-3 py-2 sm:flex">

@@ -94,9 +94,6 @@ export default async function Dashboard({
                           {workerName}
                         </p>
 
-                        <p className="truncate text-sm text-muted-foreground">
-                          {worker.email || "No email provided"}
-                        </p>
                       </div>
                     </div>
 
@@ -172,9 +169,7 @@ export default async function Dashboard({
                           {clientName}
                         </p>
 
-                        <p className="truncate text-sm text-muted-foreground">
-                          {client.email || "No email provided"}
-                        </p>
+                   
 
                         {client.clientProfile?.city && (
                           <p className="truncate text-xs text-muted-foreground">

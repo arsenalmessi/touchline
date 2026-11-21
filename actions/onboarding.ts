@@ -289,7 +289,6 @@ export async function updateWorkerContact(
   userId: string,
   workerProfileId: string,
   formData: {
-    email: string;
     phone: string;
     city: string;
     country: string;
@@ -304,10 +303,9 @@ export async function updateWorkerContact(
   }
 
   try {
-    const email = formData.email.trim().toLowerCase();
     const phone = formData.phone.trim();
 
-    if (!email || !phone || !formData.city || !formData.country) {
+    if ( !phone || !formData.city || !formData.country) {
       return {
         data: null,
         status: 400,
@@ -319,7 +317,6 @@ export async function updateWorkerContact(
       const user = await tx.user.update({
         where: { id: userId },
         data: {
-          email,
           phone,
         },
       });

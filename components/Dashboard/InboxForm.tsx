@@ -85,7 +85,6 @@ const messageData: InboxProps = {
   recipientId: selectedUser.value,
   senderId: session?.user?.id ?? "",
   senderName: session?.user?.name ?? "",
-  senderEmail: session?.user?.email ?? "",
   body: content,
 };
 

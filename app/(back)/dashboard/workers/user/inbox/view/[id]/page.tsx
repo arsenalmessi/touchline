@@ -71,7 +71,7 @@ export default async function MailDisplayPage(props: any) { // eslint-disable-li
                 <div className="line-clamp-1 text-xs">{mail.subject}</div>
                 <div className="line-clamp-1 text-xs">
                   <span className="font-medium">Reply-To:</span>{" "}
-                  {mail.senderEmail}
+                  {mail.senderName}
                 </div>
               </div>
             </div>

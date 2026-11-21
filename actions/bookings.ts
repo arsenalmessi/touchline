@@ -279,7 +279,6 @@ export async function getClientBookings(clientUserId: string) {
           select: {
             id: true,
             name: true,
-            email: true,
             image: true,
           },
         },

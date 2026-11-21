@@ -138,7 +138,6 @@ export interface InboxProps {
   recipientId: string;
   senderId: string;
   senderName: string;
-  senderEmail: string;
   subject: string;
   body: string;
 }

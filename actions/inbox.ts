@@ -84,7 +84,6 @@ export async function createInboxMessage(data: InboxProps) {
         recipientId: data.recipientId,
         senderId: user.id,
         senderName: user.name ?? "User",
-        senderEmail: user.email ?? "",
         subject: data.subject.trim(),
         body: data.body,
       },
@@ -393,7 +392,6 @@ export async function getAdminMessages() {
           select: {
             id: true,
             name: true,
-            email: true,
             role: true,
           },
         },
@@ -401,7 +399,6 @@ export async function getAdminMessages() {
           select: {
             id: true,
             name: true,
-            email: true,
             role: true,
           },
         },
