@@ -37,7 +37,7 @@ export interface ClientProfileProps {
   profilePicture?: string | null;
   bio?: string | null;
 
-  email?: string | null;
+  // email?: string | null;
   phone?: string | null;
 
   city?: string | null;
@@ -66,7 +66,7 @@ export type ProfileFormProps = {
 };
 
 export type ContactFormProps = {
-  email: string;
+  // email: string;
   phone: string;
   town: string;
   city: string;
@@ -115,7 +115,7 @@ export interface Worker {
   firstName: string;
   lastName: string;
 
-  email: string | null;
+  // email: string | null;
   phone: string | null;
 
   slug: string | null;
@@ -127,7 +127,7 @@ export interface Worker {
 export interface WorkerDetail {
   id: string;
   name: string;
-  email: string;
+  // email: string;
   phone: string;
   slug: string;
 

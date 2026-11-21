@@ -258,7 +258,7 @@ export default async function WorkerProfilePage(props: any) {
 
   <div className="flex flex-1 flex-col justify-center p-5 sm:p-7">
 
-    <div className="flex flex-wrap items-center gap-2">
+    {/* <div className="flex flex-wrap items-center gap-2">
 
       <span
         className={cn(
@@ -282,7 +282,7 @@ export default async function WorkerProfilePage(props: any) {
           ? "Verification Unsuccessful"
           : "Verification Pending"}
       </span>
-    </div>
+    </div> */}
 
     {profile.country && (
       <div className="mt-4 flex items-center gap-1.5 text-xs text-[#A49C8C]">
@@ -296,28 +296,13 @@ export default async function WorkerProfilePage(props: any) {
       {fullName || "Wellness Professional"}
     </h1>
 
-    {profile.headline && (
+    {/* {profile.headline && (
       <p className="mt-3 text-sm leading-6 text-[#D6AD65]">
         {profile.headline}
       </p>
-    )}
+    )} */}
 
-    <div className="mt-4 flex flex-wrap gap-3 text-xs text-[#807969]">
-
-      {profile.specialties?.length > 0 && (
-        <span className="flex items-center gap-1.5">
-          <Briefcase className="h-3.5 w-3.5 text-[#B8924A]" />
-          {profile.specialties.slice(0, 2).join(" · ")}
-        </span>
-      )}
-
-      {profile.yearsOfExperience != null && (
-        <span className="flex items-center gap-1.5">
-          <Clock className="h-3.5 w-3.5 text-[#B8924A]" />
-          {profile.yearsOfExperience} years experience
-        </span>
-      )}
-    </div>
+   
 
     {/* CONTACT ACTIONS */}
 
@@ -343,6 +328,14 @@ export default async function WorkerProfilePage(props: any) {
         Send Message
       </a>
 
+    </div>
+    <div className="mt-4 flex flex-wrap gap-3 text-xs text-[#807969]">
+    {profile.specialties?.length > 0 && (
+        <span className="flex items-center gap-1.5">
+          <Briefcase className="h-3.5 w-3.5 text-[#B8924A]" />
+          {profile.specialties.slice(0, 2).join(" · ")}
+        </span>
+      )}
     </div>
   </div>
 </section>

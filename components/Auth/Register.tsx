@@ -244,13 +244,10 @@ export default function RegisterWithBg({
 
                 <label htmlFor="terms">
                   I agree to the{" "}
-                  <Link href="/terms" className="text-[#b8924a]">
-                    Terms
+                  <Link href="/terms-and-conditions" className="text-[#b8924a]">
+                    Terms and Conditions
                   </Link>{" "}
-                  and{" "}
-                  <Link href="/privacy" className="text-[#b8924a]">
-                    Privacy Policy
-                  </Link>
+               
                 </label>
               </div>
 

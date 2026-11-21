@@ -100,7 +100,6 @@ export async function getworkersBySearch(
             select: {
               id: true,
               name: true,
-              email: true,
               phone: true,
               image: true,
             },
@@ -147,8 +146,6 @@ export async function getworkersBySearch(
 
         firstName: profile.firstName,
         lastName: profile.lastName,
-
-        email: user.email || "",
         phone: user.phone || "",
 
         slug: profile.slug,
@@ -198,7 +195,6 @@ export async function getWorkerBySlug(slug: string) {
           select: {
             id: true,
             name: true,
-            email: true,
             phone: true,
             image: true,
           },
@@ -240,7 +236,6 @@ export async function getWorkerBySlug(slug: string) {
         firstName: profile.firstName,
         lastName: profile.lastName,
 
-        email: user.email || "",
         phone: user.phone || "",
 
         image: profile.profilePicture || user.image || "",

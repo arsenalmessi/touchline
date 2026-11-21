@@ -189,7 +189,6 @@ export async function getWorkers(): Promise<any> {
       select: {
         id: true,
         name: true,
-        email: true,
         slug: true,
         // phone: true,
         workerProfile: {
@@ -253,7 +252,6 @@ export async function getWorkersAdmin() {
       select: {
         id: true,
         name: true,
-        email: true,
         slug: true,
         workerProfile: {
           select: {
@@ -303,7 +301,6 @@ export async function getWorkerBySlug(slug: string): Promise<any> {
       select: {
         id: true,
         name: true,
-        email: true,
         slug: true,
         workerProfile: {
           select: {
@@ -351,7 +348,6 @@ export async function getWorkerById(id: string): Promise<any> {
       select: {
         id: true,
         name: true,
-        email: true,
         phone: true,
         slug: true,
         role: true,

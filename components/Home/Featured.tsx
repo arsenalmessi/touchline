@@ -26,7 +26,6 @@ export default async function Featured() {
         select: {
           id: true,
           name: true,
-          email: true,
           phone: true,
           image: true,
           slug: true,
@@ -44,7 +43,6 @@ export default async function Featured() {
     name: profile.user.name,
     firstName: profile.firstName,
     lastName: profile.lastName,
-    email: profile.user.email,
     phone: profile.user.phone,
     slug: profile.slug,
     image: profile.user.image,

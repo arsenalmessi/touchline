@@ -76,6 +76,8 @@ export default function WorkerFilters() {
     router.push(`${pathname}?${params.toString()}`, {
       scroll: false,
     });
+
+    setExpanded(false);
   }
 
   function clearFilters() {
@@ -107,10 +109,13 @@ export default function WorkerFilters() {
 
   return (
     <section className="mb-4 border border-[#2a2318] bg-[#100e0b]">
-      {/* Compact header */}
-      <div className="flex items-center justify-between px-3 py-2 border-b border-[#2a2318]">
+      {/* Always visible: More filters button */}
+      <div className="flex items-center justify-between px-3 py-3">
         <div className="flex items-center gap-2">
-          <SlidersHorizontal size={14} className="text-[#b8924a]" />
+          <SlidersHorizontal
+            size={14}
+            className="text-[#b8924a]"
+          />
 
           <span className="text-[10px] uppercase tracking-[0.14em] text-[#f0ebe0] font-medium">
             Filters
@@ -125,137 +130,101 @@ export default function WorkerFilters() {
 
         <button
           type="button"
-          onClick={() => setExpanded(!expanded)}
-          className="flex items-center gap-1.5 text-[10px] text-[#b8924a] hover:text-[#f0ebe0]"
+          onClick={() => setExpanded((prev) => !prev)}
+          aria-expanded={expanded}
+          className="flex items-center gap-1.5 text-[10px] text-[#b8924a] hover:text-[#f0ebe0] transition-colors"
         >
-          {expanded ? "Less" : "More filters"}
+          {expanded ? "Less filters" : "More filters"}
+
           <ChevronDown
             size={13}
-            className={`transition-transform ${
+            className={`transition-transform duration-200 ${
               expanded ? "rotate-180" : ""
             }`}
           />
         </button>
       </div>
 
-      <div className="p-3">
-        {/* Main filters */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-          <div>
-            <label className={labelClass}>Gender</label>
-            <select
-              value={gender}
-              onChange={(e) => setGender(e.target.value)}
-              className={inputClass}
+      {/* Everything below is hidden until expanded */}
+      {expanded && (
+        <div className="p-3 border-t border-[#2a2318]">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+            <div>
+              <label className={labelClass}>Gender</label>
+              <select
+                value={gender}
+                onChange={(e) => setGender(e.target.value)}
+                className={inputClass}
+              >
+                <option value="">Any gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+
+            <div>
+              <label className={labelClass}>Country</label>
+              <select
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+                className={inputClass}
+              >
+                <option value="">All countries</option>
+                <option value="Zimbabwe">Zimbabwe</option>
+                <option value="South Africa">South Africa</option>
+              </select>
+            </div>
+
+            <div>
+              <label className={labelClass}>Min age</label>
+              <input
+                type="number"
+                min="18"
+                max="100"
+                placeholder="Min age"
+                value={minAge}
+                onChange={(e) => setMinAge(e.target.value)}
+                className={inputClass}
+              />
+            </div>
+
+            <div>
+              <label className={labelClass}>Max age</label>
+              <input
+                type="number"
+                min="18"
+                max="100"
+                placeholder="Max age"
+                value={maxAge}
+                onChange={(e) => setMaxAge(e.target.value)}
+                className={inputClass}
+              />
+            </div>
+          </div>
+
+     
+
+          <div className="flex items-center justify-between gap-2 mt-3 pt-3 border-t border-[#2a2318]">
+            <button
+              type="button"
+              onClick={clearFilters}
+              className="flex items-center gap-1.5 text-[10px] text-[#8b7962] hover:text-[#f0ebe0] transition-colors"
             >
-              <option value="">Any gender</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-            </select>
-          </div>
+              <RotateCcw size={11} />
+              Clear
+            </button>
 
-          <div>
-            <label className={labelClass}>Country</label>
-            <select
-              value={country}
-              onChange={(e) => setCountry(e.target.value)}
-              className={inputClass}
+            <button
+              type="button"
+              onClick={applyFilters}
+              className="flex items-center gap-1.5 bg-[#b8924a] hover:bg-[#cba65f] text-[#0d0b08] px-4 py-2 text-[9px] uppercase tracking-[0.12em] font-semibold transition-colors"
             >
-              <option value="">All countries</option>
-              <option value="Zimbabwe">Zimbabwe</option>
-              <option value="South Africa">South Africa</option>
-            </select>
-          </div>
-
-          <div>
-            <label className={labelClass}>Min age</label>
-            <input
-              type="number"
-              min="18"
-              max="100"
-              placeholder="Min age"
-              value={minAge}
-              onChange={(e) => setMinAge(e.target.value)}
-              className={inputClass}
-            />
-          </div>
-
-          <div>
-            <label className={labelClass}>Max age</label>
-            <input
-              type="number"
-              min="18"
-              max="100"
-              placeholder="Max age"
-              value={maxAge}
-              onChange={(e) => setMaxAge(e.target.value)}
-              className={inputClass}
-            />
+              <Search size={12} />
+              Apply filters
+            </button>
           </div>
         </div>
-
-        {/* Additional filters */}
-        {/* {expanded && (
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mt-3 pt-3 border-t border-[#2a2318]">
-            <div>
-              <label className={labelClass}>Min experience (years)</label>
-              <input
-                type="number"
-                min="0"
-                placeholder="Experience"
-                value={minExperience}
-                onChange={(e) => setMinExperience(e.target.value)}
-                className={inputClass}
-              />
-            </div>
-
-            <div>
-              <label className={labelClass}>Min hourly rate</label>
-              <input
-                type="number"
-                min="0"
-                placeholder="Minimum price"
-                value={minPrice}
-                onChange={(e) => setMinPrice(e.target.value)}
-                className={inputClass}
-              />
-            </div>
-
-            <div>
-              <label className={labelClass}>Max hourly rate</label>
-              <input
-                type="number"
-                min="0"
-                placeholder="Maximum price"
-                value={maxPrice}
-                onChange={(e) => setMaxPrice(e.target.value)}
-                className={inputClass}
-              />
-            </div>
-          </div>
-        )} */}
-
-        {/* Compact actions */}
-        <div className="flex items-center justify-between gap-2 mt-3 pt-2 border-t border-[#2a2318]">
-          <button
-            type="button"
-            onClick={clearFilters}
-            className="flex items-center gap-1.5 text-[10px] text-[#8b7962] hover:text-[#f0ebe0] transition-colors"
-          >
-            <RotateCcw size={11} />
-            Clear
-          </button>
-
-          <button
-            type="button"
-            onClick={applyFilters}
-            className="flex items-center gap-1.5 bg-[#b8924a] hover:bg-[#cba65f] text-[#0d0b08] px-4 py-2 text-[9px] uppercase tracking-[0.12em] font-semibold transition-colors"
-          >
-            <Search size={12} />
-            Apply filters
-          </button>
-        </div>
-      </div>
+      )}
     </section>
   );
 }
